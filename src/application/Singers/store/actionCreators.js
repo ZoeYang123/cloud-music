@@ -1,3 +1,8 @@
+/*
+ * @Description: 歌手action
+ * @Date: 2021-02-23 11:52:37
+ * @LastEditTime: 2021-02-24 16:36:51
+ */
 import { fromJS } from 'immutable';
 
 import { getHotSingerListRequest, getSingerListRequest } from 'api/request';
@@ -9,24 +14,29 @@ import {
   CHANGE_PULLUP_LOADING,
   CHANGE_PULLDOWN_LOADING,
   CHANGE_ENTER_LOADING
-} from './constants';
+} from './contants';
 
-const changeSingerList = (data) =>({
+export const changeSingerList = (data) =>({
   type:CHANGE_SINGER_LIST,
   data: fromJS(data)
 })
 
-const changeEnterLoading = (data) =>({
+export const changePageCount = (data) => ({
+  type: CHANGE_PAGE_COUNT,
+  data
+});
+
+export const changeEnterLoading = (data) =>({
   type: CHANGE_ENTER_LOADING,
   data
 })
 
-const changePullDownLoading = (data) =>({
+export const changePullDownLoading = (data) =>({
   type: CHANGE_PULLDOWN_LOADING,
   data
 })
 
-const changePullUpLoading = (data) =>({
+export const changePullUpLoading = (data) =>({
   type: CHANGE_PULLUP_LOADING,
   data
 })
@@ -38,7 +48,7 @@ export const getHotSingerList = () =>{
       const data = res.artists;
       dispatch(changeSingerList(data));
       dispatch(changeEnterLoading(false));
-      dispatch(changePullDownLoading(false))` `
+      dispatch(changePullDownLoading(false))
     }).catch(()=>{
       console.log('热门歌手数据获取失败');
     })
