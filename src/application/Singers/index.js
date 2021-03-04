@@ -1,9 +1,9 @@
 /*
  * @Description: 歌手
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-02-24 16:47:50
+ * @LastEditTime: 2021-03-04 14:39:31
  */
-import { memo, useState, useEffect } from 'react';
+import { memo, useState, useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 
@@ -24,27 +24,34 @@ import {
 } from './store/actionCreators';
 import Loading from 'baseUI/loading';
 
+import { CategoryDataContext, CHANGE_ALPHA, CHANGE_CATEGORY } from './data';
+
 
 function Singers(props) {
-  let [category, setCategory] = useState('');
-  let [alpha, setAlpha] = useState('');
+  // let [category, setCategory] = useState('');
+  // let [alpha, setAlpha] = useState('');
+
+  const { data, dispatch } = useContext(CategoryDataContext);
+  const { category, alpha } = data.toJS();
 
   const { singerList, enterLoading, pullUpLoading, pullDownLoading, pageCount } = props;
 
   const { getHotSingerDispatch, updateDispatch, pullDownRefreshDispatch, pullUpRefreshDispatch } = props;
 
   useEffect(() => {
-    getHotSingerDispatch();
+    if(!singerList.size){
+      getHotSingerDispatch();
+    }
   }, [])
 
   let handleUpdateAlpha = (val) => {
-    setAlpha(val);
+    dispatch({type: CHANGE_ALPHA,data:val})
     updateDispatch(category, val)
   }
 
   let handleUpdateCategory = (val) => {
-    setCategory(val);
-    updateDispatch(category, val)
+    dispatch({type:CHANGE_CATEGORY,data:val})
+    updateDispatch(val,alpha)
   }
 
   const handlePullUp = () => {
@@ -93,7 +100,7 @@ function Singers(props) {
         />
       </NavContainer>
       <ListContainer>
-        <Loading show={enterLoading}></Loading>
+        {enterLoading?<Loading />:''}
         <Scroll
           onScroll={forceCheck}
           pullUp={handlePullUp}
