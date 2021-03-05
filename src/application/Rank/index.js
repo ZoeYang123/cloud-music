@@ -8,6 +8,14 @@ import { connect } from "react-redux";
 import { getRankList } from './store';
 
 function Rank(props) {
+  const {rankList:list, loading} =props;
+  const { getRankListDataDispatch } = props;
+
+  let rankList = list?list.toJS():[];
+
+  useEffect(()=>{
+    getRankListDataDispatch();
+  },[]);
   return (
     <div>
      Rank
