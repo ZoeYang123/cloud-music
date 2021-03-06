@@ -1,7 +1,7 @@
 /*
  * @Description: 工具函数
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-02-24 16:50:47
+ * @LastEditTime: 2021-03-06 09:21:54
  */
 export const getCount = (count) =>{
   if(count < 0) return;
@@ -25,5 +25,14 @@ export const debounce = (func,delay) =>{
       func.apply(this,args);
       clearTimeout(timer);
     },delay)
+  }
+}
+
+//过滤函数
+export const filterIndex = rankList =>{
+  for(let i = 0; i < rankList.length - 1; i++){
+    if (rankList[i].tracks.length && !rankList[i + 1].tracks.length) {
+      return i + 1;
+    }
   }
 }
