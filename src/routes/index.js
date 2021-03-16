@@ -1,9 +1,15 @@
+/*
+ * @Description: 路由
+ * @Date: 2021-02-23 11:52:38
+ * @LastEditTime: 2021-03-16 17:50:31
+ */
 import React from 'react';
 import { Redirect } from "react-router-dom";
 import Home from 'application/Home';
 import Recommend from 'application/Recommend';
 import Singers from 'application/Singers';
 import Rank from 'application/Rank';
+import Album from 'application/Album';
 
 export default [
   {
@@ -19,7 +25,13 @@ export default [
       },
       {
         path: "/recommend",
-        component: Recommend
+        component: Recommend,
+        routes: [
+          {
+            path: "/recommend/:id",
+            component: Album
+          }
+        ]
       },
       {
         path: "/singers",

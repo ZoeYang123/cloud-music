@@ -1,7 +1,13 @@
+/*
+ * @Description: 
+ * @Date: 2021-02-23 11:52:37
+ * @LastEditTime: 2021-03-16 18:07:05
+ */
 import { memo, useEffect } from 'react';
 import styled from'styled-components';
 import { connect } from 'react-redux';
 import { forceCheck } from 'react-lazyload';
+import { renderRoutes } from 'react-router-config';
 
 import * as actionTypes from './store/actionCreators';
 
@@ -29,6 +35,7 @@ function Recommend(props) {
     if(!recommendList.size){
       getRecommendListDataDispatch ();
     }
+
   }, []);
 
   const bannerListJS = bannerList?bannerList.toJS():[];
@@ -42,6 +49,7 @@ function Recommend(props) {
         </div>
       </Scroll>
       {enterLoading?<Loading></Loading>:null}
+      { renderRoutes(props.route.routes) }
     </Content>
   )
 };
