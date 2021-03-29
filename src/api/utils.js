@@ -1,7 +1,7 @@
 /*
  * @Description: 工具函数
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-03-16 17:55:47
+ * @LastEditTime: 2021-03-29 16:45:33
  */
 export const getCount = (count) =>{
   if(count < 0) return;
@@ -35,4 +35,14 @@ export const filterIndex = rankList =>{
       return i + 1;
     }
   }
+}
+
+//处理歌手列表拼接歌手名字
+export const getName = list =>{
+  let str = '';
+  list.map((item, index) => {
+    str += index === 0 ? item.name : '/' + item.name;
+    return item;
+  });
+  return str;
 }
