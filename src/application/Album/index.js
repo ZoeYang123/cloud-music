@@ -1,12 +1,14 @@
 /*
  * @Description: 
  * @Date: 2021-03-16 17:42:01
- * @LastEditTime: 2021-03-29 16:48:52
+ * @LastEditTime: 2021-04-08 17:46:18
  */
-import { useState, memo,useRef, useEffect } from 'react';
+import { useState, memo,useRef, useEffect, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { Container, TopDesc, Menu, SongList, SongItem } from './style';
+import style from 'assets/global-style';
+
 import Header from 'baseUI/header';
 import Scroll from 'baseUI/scroll';
 
@@ -14,6 +16,10 @@ import { getName, getCount } from 'api/utils'
 
 function Album(props) {
   const [showStatus, setShowStatus] = useState(true);
+  const [title, setTitle] = useState('歌单');
+  const [isMarquee, setIsMarquee] = useState(false);//是否跑马灯
+
+  const headerEl = useRef();
 
   const currentAlbum = {
     creator: {
@@ -112,8 +118,14 @@ function Album(props) {
       onExited={props.history.goBack}
     >
       <Container>
-        <Header title={'返回'} handleClick={handleBack}></Header>
-        <Scroll bounceTop={false}>
+        <Header 
+          ref={headerEl} 
+          title={title} 
+          handleClick={handleBack}
+          isMarquee={isMarquee}
+        >
+        </Header>
+        <Scroll bounceTop={false} onScroll={handleScroll}>
           <div>
             <TopDesc background={currentAlbum.coverImgUrl}>
               <div className="background">
