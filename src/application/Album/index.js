@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-03-16 17:42:01
- * @LastEditTime: 2021-04-08 17:46:18
+ * @LastEditTime: 2021-04-08 20:32:24
  */
 import { useState, memo,useRef, useEffect, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -13,6 +13,8 @@ import Header from 'baseUI/header';
 import Scroll from 'baseUI/scroll';
 
 import { getName, getCount } from 'api/utils'
+
+export const HEADER_HEIGHT = 45;
 
 function Album(props) {
   const [showStatus, setShowStatus] = useState(true);
@@ -106,6 +108,24 @@ function Album(props) {
 
   const handleBack = () => {
     setShowStatus(false);
+  }
+
+  const handleScroll = (pos) =>{
+    let minScrollY = -HEADER_HEIGHT;
+    let precent = Math.abs(pos.y/minScrollY);
+    let headerDom = headerEl.current;
+    //滑过顶部的高度开始变化
+    if(pos.y < minScrollY){
+      headerDom.style.backgroundColor = style['theme-color'];
+      headerDom.style.opacity = Math.min(1,(precent-1)/2);
+      setTitle(currentAlbum.name);
+      setIsMarquee(true);
+    }else{
+      headerDom.style.backgroundColor = "";
+      headerDom.style.opacity = 1;
+      setTitle('歌单');
+      setIsMarquee(false);
+    }
   }
 
   return (
