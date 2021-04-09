@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-03-17 09:05:05
+ * @LastEditTime: 2021-04-09 14:06:59
  */
 import { memo, useEffect } from 'react';
 import { connect } from "react-redux";
@@ -36,7 +36,7 @@ function Rank(props) {
         {
           list.map((item) => {
             return (
-              <ListItem key={item.coverImgId} tracks={item.tracks} onClick={() => enterDetail(item.name)}>
+              <ListItem key={item.coverImgId_str} tracks={item.tracks} onClick={() => enterDetail(item)}>
                 <div className="img_wrapper">
                   <img src={item.coverImgUrl} alt="" />
                   <div className="decorate"></div>
@@ -65,12 +65,8 @@ function Rank(props) {
 
   let displayStyle = loading ? { 'display': 'none' } : { 'display': '' };
 
-  const enterDetail = (name) =>{
-    const idx = filterIndex(name);
-    if(idx === null){
-      alert('暂无相关数据');
-      return;
-    }
+  const enterDetail = (detail) =>{
+    props.history.push(`/rank/${detail.id}`)
   }
 
   return (

@@ -1,7 +1,7 @@
 /*
  * @Description: 路由
  * @Date: 2021-02-23 11:52:38
- * @LastEditTime: 2021-03-16 17:50:31
+ * @LastEditTime: 2021-04-09 14:08:52
  */
 import React from 'react';
 import { Redirect } from "react-router-dom";
@@ -39,7 +39,14 @@ export default [
       },
       {
         path: "/rank",
-        component: Rank
+        component: Rank,
+        key:'rank',
+        routes: [
+          {
+            path:'/rank/:id',
+            component: Album
+          }
+        ]
       }
     ]
   }

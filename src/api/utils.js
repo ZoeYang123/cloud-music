@@ -1,7 +1,7 @@
 /*
  * @Description: 工具函数
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-03-29 16:45:33
+ * @LastEditTime: 2021-04-09 11:39:13
  */
 export const getCount = (count) =>{
   if(count < 0) return;
@@ -46,3 +46,6 @@ export const getName = list =>{
   });
   return str;
 }
+
+//判断对象是否为空
+export const isEmptyObject = obj => !obj || Object.keys(obj).length === 0;
