@@ -1,7 +1,7 @@
 /*
  * @Description: 歌手
  * @Date: 2021-04-09 17:31:34
- * @LastEditTime: 2021-04-10 18:24:50
+ * @LastEditTime: 2021-04-12 08:50:15
  */
 import React, { memo, useState, useRef, useEffect, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -136,7 +136,16 @@ function Singer(props) {
       imageDOM.style['transform'] = `scale(${1 + percent})`;
       buttonDOM.style['transform'] = `translate3d(0,${newY}px,0)`;
       layerDOM.style.top = `${height - OFFSET + newY}px`;
-    }else if(newY>=minScrollY)
+    }else if(newY>=minScrollY){
+      layerDOM.style.top = `${height - OFFSET - Math.abs(newY)}px`;
+      layerDOM.style.zIndex = 1;
+      imageDOM.style.paddingTop = '75%';
+      imageDOM.style.height = 0;
+      imageDOM.style.zIndex = -1;
+      //按钮跟着移动渐渐变透明
+      buttonDOM.style['transform'] = `translate3d(0, ${newY}px,0)`;
+      buttonDOM.style['opactiy'] = `${1 - percent * 2}`;
+    }
   }
 
   return (
