@@ -1,7 +1,7 @@
 /*
  * @Description: 接口请求
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-04-09 10:27:34
+ * @LastEditTime: 2021-04-20 15:01:35
  */
 import { axiosInstance } from './config';
 
@@ -30,4 +30,9 @@ export const getRankListRequest = () =>{
 //歌单
 export const getAlbumDetailRequest = id =>{
   return axiosInstance.get(`/playlist/detail?id=${id}`);
+}
+
+//歌手信息
+export const getSingerInfoRequest = id =>{
+  return axiosInstance.get(`/artists?id=${id}`);
 }
