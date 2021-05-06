@@ -1,7 +1,7 @@
 /*
  * @Description: 歌手
  * @Date: 2021-04-09 17:31:34
- * @LastEditTime: 2021-04-20 17:53:19
+ * @LastEditTime: 2021-05-06 17:29:13
  */
 import React, { memo, useState, useRef, useEffect, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -47,10 +47,10 @@ function Singer(props) {
     const id = props.match.params.id;
     getSingerDataDispatch(id);
     let h = imageWrapper.current.offsetHeight;
-    songScrollWrapper.current.style.top = `${h - OFFSET} px`;
+    songScrollWrapper.current.style.top = `${h - OFFSET}px`;
     initialHeight.current = h;
     //把遮罩先放在下面，以裹住歌曲列表
-    layer.current.style.top = `${h - OFFSET} px`;
+    layer.current.style.top = `${h - OFFSET}px`;
     songScroll.current.refresh();
   }, []);
 

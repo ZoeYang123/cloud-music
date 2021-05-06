@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-04-09 17:41:41
- * @LastEditTime: 2021-04-20 17:48:49
+ * @LastEditTime: 2021-05-06 17:20:01
  */
 import styled from 'styled-components';
 import style from 'assets/global-style';
@@ -82,10 +82,11 @@ export const CollectButton = styled.div`
 export const SongListWrapper = styled.div`
   position: absolute;
   z-index: 50;
-  top: 0;
+  /* top: 0;
   left: 0;
   bottom: 0;
-  right: 0;
+  right: 0; */
+  inset: 0px;
   >div{
     position: absolute;
     left: 0;

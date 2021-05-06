@@ -183,6 +183,12 @@ export const alphaTypes = [{
   }
 ];
 
+export const playMode = {
+  sequence:0,
+  loop:1,
+  random:2
+}
+
 export {
   axiosInstance
 }
