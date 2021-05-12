@@ -1,7 +1,13 @@
+/*
+ * @Description: 
+ * @Date: 2021-02-23 11:52:37
+ * @LastEditTime: 2021-05-12 15:23:43
+ */
 import { memo } from 'react';
 import { renderRoutes } from 'react-router-config';
 import { NavLink } from 'react-router-dom';
 import { Top, Tab, TabItem } from './style';
+import Player from '../Player';
 
 function Home(props) {
   const { route } = props;
@@ -30,6 +36,7 @@ function Home(props) {
         </NavLink>
       </Tab>
       { renderRoutes (route.routes) }
+      <Player></Player>
     </div>
   )
 };
