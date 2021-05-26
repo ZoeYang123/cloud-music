@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-05-07 14:35:32
- * @LastEditTime: 2021-05-12 15:59:55
+ * @LastEditTime: 2021-05-26 16:05:28
  */
 import { memo, useRef } from 'react';
 import { getName } from 'api/utils';
@@ -10,7 +10,7 @@ import { CSSTransition } from 'react-transition-group';
 
 function MiniPlayer(props) {
   const { song, fullScreen } = props;
-  const { toggleFullScreenDispatch } = props;
+  const { toggleFullScreen } = props;
   
   const miniPlayRef = useRef();
   return (

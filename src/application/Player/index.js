@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-05-07 14:11:24
- * @LastEditTime: 2021-05-12 15:50:53
+ * @LastEditTime: 2021-05-26 16:12:49
  */
 
 import { memo, useRef, useState, useEffect } from 'react';
@@ -50,7 +50,9 @@ const mapStateToProps = state =>({
   currentSong: state.getIn(['player','showPlayList']),
   showPlayList: state.getIn(['player','showPlayList']),
   mode: state.getIn(['player','mode']),
-
+  currentIndex: state.getIn(['player','currentIndex']),
+  playList:state.getIn(['player','playList']),
+  sequencePlayList: state.getIn(['player','sequencePlayList'])
 });
 
 const mapDispatchToProps = dispatch =>{
