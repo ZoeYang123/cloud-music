@@ -1,10 +1,19 @@
 /*
  * @Description: 
  * @Date: 2021-05-12 17:35:19
- * @LastEditTime: 2021-05-26 16:47:22
+ * @LastEditTime: 2021-05-27 17:51:13
  */
 import styled, {keyframes} from 'styled-components';
 import style from 'assets/global-style';
+
+const rotate = keyframes`
+  0%{
+    transform: rotate (0);
+  }
+  100%{
+    transform: rotate (360deg);
+  }
+`
 
 export const NormalPlayerContainer = styled.div`
   position: fixed;
@@ -57,8 +66,124 @@ export const Top = styled.div`
     color:${style['font-color-desc']};
     ${style.noWrap()}
   }
+  .subtitle{
+    line-height: 20px;
+    text-align: center;
+    font-size: ${style["font-size-m"]};
+    color: ${style["font-color-desc-v2"]};
+    ${style.noWrap()};
+  }
 `;
 
 export const Middle = styled.div`
-  
+  position: fixed;
+  width: 100%;
+  top:80px;
+  bottom:170px;
+  white-space: nowrap;
+  font-size: 0;
+  overflow: hidden;
+`;
+
+export const CDWrapper = styled.div`
+  position:absolute;
+  margin:auto;
+  top:10%;
+  left:0;
+  right:0;
+  width:80%;
+  box-sizing:border-box;
+  height:80vw;
+  .cd{
+    width:100%;
+    height:100%;
+    border-radius: 50%;
+    .image{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border:10px solid rgba(255,255,255,0.1);
+    }
+    .play{
+      animation: ${rotate} 20s linear infinite;
+      &.pause{
+        animation-play-state: paused;
+      }
+    }
+  }
+  .playing_lyric{
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: normal;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+  }
+`;
+
+export const Bottom = styled.div`
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+`;
+
+export const ProgressWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px 0;
+  .time{
+    color:${style["font-color-desc"]};
+    font-size: ${style["font-size-s"]};
+    flex: 0 0 30px;
+    line-height: 30px;
+    width: 30px;
+    &.time-l{
+      text-align: left;
+    }
+    &.time-r{
+      text-align: right;
+    }
+  }
+  .progress-bar-wrapper{
+    flex: 1;
+  }
+`;
+
+export const Operators = styled.div`
+  display: flex;
+  align-items: center;
+  .icon{
+    font-weight:300;
+    flex: 1;
+    color: ${style['font-color-desc']};
+    &.disable{
+      color: ${style['theme-color-shadow']};
+    }
+    i{
+      font-weight: 300;
+      font-size: 30px;
+    }
+  }
+  .i-left{
+    text-align: right;
+  }
+  .i-center{
+    padding:0 20px;
+    text-align: center;
+    i{
+      font-size: 40px;
+    }
+  }
+  .i-right{
+    text-align: left;
+  }
+  .icon-favorite{
+    color:${style['theme-color']};
+  }
 `;
