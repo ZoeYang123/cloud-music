@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-03-16 17:42:01
- * @LastEditTime: 2021-04-09 13:53:23
+ * @LastEditTime: 2021-07-09 18:04:13
  */
 import { useState, memo, useRef, useEffect, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -87,7 +87,7 @@ function Album(props) {
     )
   }
 
-  const renderSongList = () => {
+  const renderSongList = (props) => {
     return (
       <SongList>
         <div className="first_line">

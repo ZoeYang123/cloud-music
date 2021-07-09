@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-04-10 12:01:08
- * @LastEditTime: 2021-04-20 17:43:52
+ * @LastEditTime: 2021-07-09 17:49:17
  */
 
 import React, { forwardRef, memo } from 'react';
@@ -14,6 +14,7 @@ const SongsList = forwardRef((props, refs) => {
   const selectItem = (e, index) => {
     console.log(index);
   }
+
 
   let songList = (list) => {
     let res = [];

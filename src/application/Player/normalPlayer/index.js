@@ -1,19 +1,20 @@
 /*
  * @Description: 
  * @Date: 2021-05-12 15:42:53
- * @LastEditTime: 2021-07-08 18:06:48
+ * @LastEditTime: 2021-07-09 16:22:40
  */
 import { memo, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import animations from 'create-keyframe-animation';
 import { getName, prefixStyle, formatPlayTime } from 'api/utils';
+import { playMode } from 'api/config';
 import ProgressBar from 'baseUI/progress-bar';
 import { NormalPlayerContainer, Middle, Top, Bottom, Operators, CDWrapper, ProgressWrapper } from './style';
 import progressBar from '../../../baseUI/progress-bar';
 
 function NormalPlayer(props) {
-  const { song, fullScreen, playing, percent, duration, currentTime } = props;
-  const { toggleFullScreen, clickPlaying, onProgressChange, handlePrev, handleNext } = props;
+  const { song, fullScreen, playing, percent, duration, currentTime, mode } = props;
+  const { toggleFullScreen, clickPlaying, onProgressChange, handlePrev, handleNext, changeMode } = props;
 
   const normalPlayerRef = useRef();
   const cdWrapperRef = useRef();
@@ -90,6 +91,19 @@ function NormalPlayer(props) {
     normalPlayerRef.current.style.display = "none";
   };
 
+  //改变模式
+  const getPlayMode = () => {
+    let content;
+    if (mode === getPlayMode.sequence) {
+      content = "&#xe625;";
+    } else if (mode === playMode.loop) {
+      content = "&#xe653;";
+    } else {
+      content = "&#xe61b;";
+    }
+    return content;
+  }
+
   return (
     <CSSTransition
       classNames="normal"
@@ -142,8 +156,8 @@ function NormalPlayer(props) {
             <div className="time time-r">4:17</div>
           </ProgressWrapper>
           <Operators>
-            <div className="icon i-left">
-              <i className="iconfont">&#xe625;</i>
+            <div className="icon i-left" onClick={changeMode}>
+              <i className="iconfont" dangerouslySetInnerHTML={{ __html: getPlayMode() }}></i>
             </div>
             <div className="icon i-left" onClick={handlePrev}>
               <i className="iconfont">&#xe6e1;</i>
