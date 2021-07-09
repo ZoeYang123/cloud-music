@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Date: 2021-05-07 14:58:52
- * @LastEditTime: 2021-05-12 15:25:26
+ * @LastEditTime: 2021-07-07 16:24:38
  */
 import styled, { keyframes } from 'styled-components';
 import style from 'assets/global-style';
@@ -25,16 +25,16 @@ export const MiniPlayerContainer = styled.div`
   width:100%;
   height:60px;
   background:${style['highlight-background-color']};
-  &.mini-enter{
-    transform:translate3d(0,100%,0)
+    &.mini-enter {
+    transform: translate3d(0, 100%, 0);
   }
-  &.mini-enter-active{
-    transform:translate3d(0,0,0);
-    transition:all 0.4s;
+  &.mini-enter-active {
+    transform: translate3d(0, 0, 0);
+    transition: all 0.4s;
   }
-  &.min-exit-active{
-    transform:translate3d(0,100%,0);
-    transition:all .4s;
+  &.mini-exit-active {
+    transform: translate3d(0, 100%, 0);
+    transition: all .4s
   }
   .icon{
     flex: 0 0 40px;

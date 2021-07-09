@@ -1,7 +1,7 @@
 /*
  * @Description: 工具函数
  * @Date: 2021-02-23 11:52:37
- * @LastEditTime: 2021-04-09 11:39:13
+ * @LastEditTime: 2021-07-08 17:30:08
  */
 export const getCount = (count) =>{
   if(count < 0) return;
@@ -49,3 +49,46 @@ export const getName = list =>{
 
 //判断对象是否为空
 export const isEmptyObject = obj => !obj || Object.keys(obj).length === 0;
+
+// 给 css3 相关属性增加浏览器前缀，处理浏览器兼容性问题
+let elementStyle = document.createElement ("div").style;
+
+let vendor = (() => {
+  // 首先通过 transition 属性判断是何种浏览器
+  let transformNames = {
+    webkit: "webkitTransform",
+    Moz: "MozTransform",
+    O: "OTransfrom",
+    ms: "msTransform",
+    standard: "Transform"
+  };
+  for (let key in transformNames) {
+    if (elementStyle [transformNames [key]] !== undefined) {
+      return key;
+    }
+  }
+  return false;
+})();
+
+export function prefixStyle (style) {
+  if (vendor === false) {
+    return false;
+  }
+  if (vendor === "standard") {
+    return style;
+  }
+  return vendor + style.charAt (0).toUpperCase () + style.substr (1);
+}
+
+//拼接歌曲的url链接
+export const getSongUrl = id =>{
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
+}
+
+//转换歌曲播放时间
+export const formatPlayTime = interval => {
+  interval = interval | 0; //|0表示向下取整
+  const minue = (interval / 60) | 0;
+  const second = (interval % 60).toString().padStart(2, "0");
+  return `${minue}:${second}`
+}
